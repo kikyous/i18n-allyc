@@ -16,7 +16,7 @@ export function timeout(ms = 1000) {
 }
 
 export function getExt() {
-  return extensions.getExtension('lokalise.i18n-ally')!
+  return extensions.getExtension('kikyous.i18n-allyc')!
 }
 
 export async function openFile(name: string) {
