@@ -4,6 +4,7 @@ import fg from 'fast-glob'
 import _, { uniq, throttle, set } from 'lodash'
 import fs from 'fs-extra'
 import { findBestMatch } from 'string-similarity'
+import AsyncLock from 'async-lock'
 import { FILEWATCHER_TIMEOUT } from '../../meta'
 import { ParsedFile, PendingWrite, DirStructure, TargetPickingStrategy } from '../types'
 import { LocaleTree } from '../Nodes'
@@ -15,6 +16,7 @@ import { ReplaceLocale, Log, applyPendingToObject, unflatten, NodeHelper, getCac
 import i18n from '~/i18n'
 
 const THROTTLE_DELAY = 1500
+const lock = new AsyncLock()
 
 export class LocaleLoader extends Loader {
   private _files: Record<string, ParsedFile> = {}
@@ -283,45 +285,53 @@ export class LocaleLoader extends Loader {
         if (parser.readonly || Config.readonly)
           throw new AllyError(ErrorType.write_in_readonly_mode)
 
-        Log.info(`💾 Writing ${filepath}`)
-
-        let original: any = {}
-        if (fs.existsSync(filepath)) {
-          original = await parser.load(filepath)
-          original = this.preprocessData(original, {
-            locale: pendings[0].locale,
-            targetFile: filepath,
-          })
-        }
-
-        let modified = original
-        for (const pending of pendings) {
-          let keypath = pending.keypath
-
-          if (Global.namespaceEnabled) {
-            const node = this.getNodeByKey(keypath)
-            keypath = NodeHelper.getPathWithoutNamespace(keypath, node, pending.namespace)
+        const _write = async() => {
+          Log.info(`💾 Writing: ${filepath}`)
+          let original: any = {}
+          if (fs.existsSync(filepath)) {
+            original = await parser.load(filepath)
+            original = this.preprocessData(original, {
+              locale: pendings[0].locale,
+              targetFile: filepath,
+            })
           }
 
-          modified = applyPendingToObject(
-            modified,
-            keypath,
-            pending.value,
-            await Global.requestKeyStyle(),
-          )
+          let modified = original
+          for (const pending of pendings) {
+            let keypath = pending.keypath
+
+            if (Global.namespaceEnabled) {
+              const node = this.getNodeByKey(keypath)
+              keypath = NodeHelper.getPathWithoutNamespace(keypath, node, pending.namespace)
+            }
+
+            modified = applyPendingToObject(
+              modified,
+              keypath,
+              pending.value,
+              await Global.requestKeyStyle(),
+            )
+          }
+
+          const locale = pendings[0].locale
+
+          const processingContext = { locale, targetFile: filepath }
+          const processed = this.deprocessData(modified, processingContext)
+
+          await parser.save(filepath, processed, Config.sortKeys)
+
+          if (this._files[filepath]) {
+            this._files[filepath].value = modified
+            this._files[filepath].mtime = this.getMtime(filepath)
+          }
+          Log.info(`💾 Write finished: ${filepath}`)
         }
 
-        const locale = pendings[0].locale
+        Log.info(`💾 Wait write: ${filepath}`)
 
-        const processingContext = { locale, targetFile: filepath }
-        const processed = this.deprocessData(modified, processingContext)
-
-        await parser.save(filepath, processed, Config.sortKeys)
-
-        if (this._files[filepath]) {
-          this._files[filepath].value = modified
-          this._files[filepath].mtime = this.getMtime(filepath)
-        }
+        await lock.acquire(filepath, () => {
+          return _write()
+        })
       }
     }
     catch (e) {
