@@ -1,8 +1,8 @@
 {
-  "publisher": "lokalise",
-  "name": "i18n-ally",
-  "version": "2.8.1",
-  "displayName": "i18n Ally",
+  "publisher": "kikyous",
+  "name": "i18n-allyc",
+  "version": "3.0.0",
+  "displayName": "i18n Ally - Continue",
   "description": "🌍 All in one i18n extension for VS Code",
   "keywords": [
     "vue",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lokalise/i18n-ally"
+    "url": "https://github.com/kikyous/i18n-allyc"
   },
   "main": "./dist/extension",
   "scripts": {
@@ -23,7 +23,7 @@
     "gh:release": "conventional-github-releaser -p angular",
     "build": "rimraf dist && nr i18n:build && nr main:build && nr editor:build && esno scripts/post-build.ts",
     "dev": "run-p *:dev",
-    "main:build": "cross-env I18N_ALLY_ENV=production webpack --mode development",
+    "main:build": "cross-env I18N_ALLY_ENV=production webpack --mode production",
     "main:dev": "cross-env I18N_ALLY_ENV=development webpack --mode development --watch --info-verbosity verbose",
     "editor:build": "parcel build src/webview/src/index.html --out-dir dist/editor --no-minify",
     "editor:dev": "nodemon -w src/webview/src -e js,ts,vue,html --exec \"nr editor:build\"",
