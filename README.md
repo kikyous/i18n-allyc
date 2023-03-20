@@ -7,15 +7,15 @@ English | <a href="https://github.com/lokalise/i18n-ally/blob/main/README.zh-CN.
 </p>
 
 <p align="center">
-<a href="https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/lokalise.i18n-ally.svg?color=blue&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/d/lokalise.i18n-ally.svg?color=4bdbe3" alt="Visual Studio Marketplace Downloads" /></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/i/lokalise.i18n-ally.svg?color=63ba83" alt="Visual Studio Marketplace Installs" /></a>
-<a href="https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally" target="__blank"><img src="https://vsmarketplacebadge.apphb.com/trending-monthly/lokalise.i18n-ally.svg?color=a1b858" alt="Marketplace Trending Monthly" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=kikyous.i18n-allyc" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/kikyous.i18n-allyc.svg?color=blue&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=kikyous.i18n-allyc" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/d/kikyous.i18n-allyc.svg?color=4bdbe3" alt="Visual Studio Marketplace Downloads" /></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=kikyous.i18n-allyc" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/i/kikyous.i18n-allyc.svg?color=63ba83" alt="Visual Studio Marketplace Installs" /></a>
+
 <br/>
-<a href="https://github.com/lokalise/i18n-ally/wiki" target="__blank"><img alt="Wiki" src="https://img.shields.io/static/v1?label=docs&message=wiki&color=e3897b"></a>
-<a href="https://github.com/lokalise/i18n-ally" target="__blank"><img src="https://img.shields.io/github/last-commit/lokalise/i18n-ally.svg?color=c977be" alt="GitHub last commit" /></a>
-<a href="https://github.com/lokalise/i18n-ally/issues" target="__blank"><img src="https://img.shields.io/github/issues/lokalise/i18n-ally.svg?color=a38eed" alt="GitHub issues" /></a>
-<a href="https://github.com/lokalise/i18n-ally" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/lokalise/i18n-ally?style=social"></a>
+<a href="https://github.com/kikyous/i18n-allyc/wiki" target="__blank"><img alt="Wiki" src="https://img.shields.io/static/v1?label=docs&message=wiki&color=e3897b"></a>
+<a href="https://github.com/kikyous/i18n-allyc" target="__blank"><img src="https://img.shields.io/github/last-commit/kikyous/i18n-allyc.svg?color=c977be" alt="GitHub last commit" /></a>
+<a href="https://github.com/kikyous/i18n-allyc/issues" target="__blank"><img src="https://img.shields.io/github/issues/kikyous/i18n-allyc.svg?color=a38eed" alt="GitHub issues" /></a>
+<a href="https://github.com/kikyous/i18n-allyc" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/kikyous/i18n-allyc?style=social"></a>
 </p>
 
 <p align='center'>
